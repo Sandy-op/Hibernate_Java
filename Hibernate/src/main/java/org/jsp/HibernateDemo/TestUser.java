@@ -1,0 +1,14 @@
+package org.jsp.HibernateDemo;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class TestUser {
+	public static void main(String[] args) {
+		Configuration cfg = new Configuration().configure();
+		SessionFactory factory = cfg.buildSessionFactory();
+		Session s = factory.openSession();
+		System.out.println("Process Done...!");
+	}
+}

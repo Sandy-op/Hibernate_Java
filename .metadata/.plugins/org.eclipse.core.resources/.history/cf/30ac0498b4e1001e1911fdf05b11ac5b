@@ -1,0 +1,32 @@
+package org.jsp.hibernateDemo;
+import java.util.Scanner;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+public class UpdateEmployee {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the Employee id to update the info.-");
+		int id = sc.nextInt();
+		Configuration cfg = new Configuration().configure();
+		SessionFactory factory = cfg.buildSessionFactory();
+		Session s = factory.openSession();
+		Employee e = s.get(Employee.class, id);//persistent state
+		if(e != null) {
+			e.setDesg("Devops Lead");
+			e.setName("Sandeep Anand");
+			e.setPhone(9931111172L);
+			e.setSalary(8000000);
+			e.setPassword("Sandy@pdp");
+			Transaction t = s.beginTransaction();
+			t.commit();
+		}
+		else{
+			System.err.println("Invalid Employee Id..!");
+		}
+		sc.close();
+		
+	}
+}
